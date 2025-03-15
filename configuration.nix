@@ -117,7 +117,11 @@
 
     home.packages = with pkgs; [
       zsh
+      zsh-completions
+      zsh-autosuggestions
+      zsh-syntax-highlighting
       terminator
+      docker
       emacs
       wget
       git
@@ -136,6 +140,9 @@
 
     programs.zsh = {
       enable = true;
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      syntaxHighlighting.enable = true;
       shellAliases = {
         esprint = "sudo find / \\( -name \"*~\" -o -name \"#*#\" \\) -print 2> /dev/null";
 	      esdelete = "sudo find / \\( -name \"*~\" -o -name \"#*#\" \\) -print -delete 2> /dev/null";
@@ -143,6 +150,10 @@
       oh-my-zsh = {
         enable = true;
 	      theme = "agnoster";
+        plugins = [
+          "git"
+          "docker"
+        ];
       };
     };
 
