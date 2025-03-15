@@ -1,0 +1,51 @@
+;; -----------------------------
+;; Package Management and Initialization
+;; -----------------------------
+(require 'package)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("gnu"   . "https://elpa.gnu.org/packages/")))
+
+;; Set package archive priorities to prefer MELPA over GNU
+(setq package-archive-priorities
+      '(("melpa" . 10)
+        ("gnu"   . 1)))
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; -----------------------------
+;; use-package: a neat package wrapper
+;; -----------------------------
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+;; -----------------------------
+;; Python Development Setup with Elpy
+;; -----------------------------
+(use-package elpy
+  :init
+  (elpy-enable)
+  :config
+  ;; Set the Python interpreter; change to "python" if needed.
+  (setq python-shell-interpreter "python3")
+  ;; Optional: Enable flycheck for on-the-fly syntax checking.
+  (add-hook 'python-mode-hook 'flycheck-mode))
+
+;; Add nix-mode support
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
+;; -----------------------------
+;; Additional Useful Settings
+;; -----------------------------
+;; Disable the startup message.
+(setq inhibit-startup-message t)
+
+;; Optional: Customize the appearance of Emacs or add more keybindings here.
+
+;; Load Theme
+(load-theme 'wombat t)
