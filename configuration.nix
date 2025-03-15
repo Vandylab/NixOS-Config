@@ -115,7 +115,7 @@
   users.users.vandylab = {
     isNormalUser = true;
     description = "Vandylab";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
   };
 
   programs.zsh.enable = true;
@@ -217,10 +217,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    xorg.xbacklight
+    wget
+    acpilight
+    brightnessctl
     dmenu rofi
     i3status i3lock i3blocks
-    xorg.xrandr xorg.xbacklight
+    xorg.xrandr
     feh
     picom
     networkmanagerapplet
@@ -228,6 +230,8 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
+
+  hardware.acpilight.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
