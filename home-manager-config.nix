@@ -1,5 +1,8 @@
 { pkgs, lib, ... } : {
 
+  home.username = builtins.getEnv "USER";
+  home.homeDirectory = builtins.getEnv "HOME";
+
   nixpkgs.config = {
     allowUnfree = true;
   };
@@ -87,6 +90,8 @@
       force = true;
     };
   };
+
+  programs.home-manager.enable = true;
 
   home.stateVersion = "24.11";
 }
