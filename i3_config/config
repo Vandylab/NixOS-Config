@@ -241,7 +241,7 @@ bar {
 #exec --no-startup-id dunst
 
 # Setup a wallpaper at the launch of i3
-exec --no-startup-id feh --no-fehbg --bg-scale "/home/vandylab/.config/i3/wallpaper.png"
+exec --no-startup-id feh --no-fehbg --bg-scale "$HOME/.config/i3/wallpaper.png"
 
 # Load the redshift anti blue color service
 #exec --no-startup-id redshift-gtk
